@@ -1,9 +1,10 @@
 #include<iostream>
 
+template <typename T>
 class Myvector
 {
     private:
-    int* data;
-    int capacity;
-    int current_size;
+    T* data;
+    T capacity;
+    T current_size;
 };
