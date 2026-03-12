@@ -65,7 +65,53 @@ class Myvector
             delete[] data;
         }
     //equal operator overloading
-    
+        Myvector& operator=(const Myvector& other){
+            if(this==&other){
+                return *this;
+            }
+            delete[] data;
+            this->current_size=other.current_size;
+            this->capacity=other.capacity;
+            data=new T[capacity];
+            for(size_t i=0;i<current_size;i++){
+                this->data[i]=other.data[i];
+            }
+            return *this;
+        }
+    //pushback function (doubling strategy used here)
+        void push_back(const T& value){
+            if(current_size==capacity){
+                capacity=(capacity==0)?1:capacity*2;
+                T* newdata=new T[capacity];
+                for(size_t i=0;i<current_size;i++){
+                    newdata[i]=data[i];
+                }
+                delete[] data;
+                data=newdata;
+            }
+            data[current_size++]=value;
+            
+        }
+    //popback function ()
+        void pop_back(){
+            if(current_size>0){
+                current_size--;
+            }            
+        }
+    //access operator
+        T& operator[](size_t index){
+            return data[index];
+        }
+    //utility function
+        size_t get_currentsize(){
+            return current_size;
+        }
+        size_t get_capacity(){
+            return capacity;
+        }
+        bool is_empty(){
+            return current_size==0;
+        }   
     //display function
         void show(){
             std::cout<<this->current_size<<","<<this->capacity<<std::endl;
