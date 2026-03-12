@@ -64,6 +64,8 @@ class Myvector
         ~Myvector(){
             delete[] data;
         }
+    //equal operator overloading
+    
     //display function
         void show(){
             std::cout<<this->current_size<<","<<this->capacity<<std::endl;
